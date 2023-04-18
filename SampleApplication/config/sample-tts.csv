@@ -1,0 +1,80 @@
+﻿LABEL,en-US,fr-CA
+greeting,Thank you for calling the Compucom Rapid Development Framework sample application.,"Merci d'avoir appelé Compucom - Rapid Development Framework, exemple d'application."
+language,"For service in English, press 1 or stay on the line. Pour obtenir des renseignements en français, faites le deux",
+BM01,Broadcast Message 1.  You can enable and disable broadcast messages using the IVR Administration line.,Message de diffusion 1. Vous pouvez activer et désactiver ce message à l'aide de la ligne d'administration IVR.
+BM02,"Broadcast message 2.  While you test out some of the features of this sample application, you can always press star to repeat a menu, or press 9 to return to the previous menu.","Il s'agit du message de diffusion 2. Pendant que vous testez certaines des fonctionnalités de cet exemple d'application, vous pouvez toujours appuyer sur étoile pour répéter un menu ou appuyer sur 9 pour revenir au menu précédent."
+BM03, Broadcast Message 3.  You should also know that the default invalid and timeout retries is set to 2.,This is Broadcast Message 3.  You should also know that the default invalid and timeout retries is set to 2.
+mainmenu,"This is the main menu.  This sample application provides a demonstration of some of the functions you can easily develop on the framework.  To access a Dynamic menu and listen to different prompt types, press 1. To access the IVR System Administration line, press 2.  To test  web services, press 3. ","C'est le menu principal. Cet exemple d'application fournit une démonstration de certaines des fonctions que vous pouvez facilement développer sur le framework. Pour accéder à un menu dynamique et écouter différents types d'invites, appuyez sur 1. Pour accéder à la ligne d'administration du système IVR, appuyez sur 2. Pour tester les services Web, appuyez sur 3."
+DM100,This is a Dynamic Menu.  You can enable and disable menu options using the IVR Administration Line,Il s'agit d'un menu dynamique. Vous pouvez activer et désactiver les options de menu à l'aide de la ligne d'administration IVR.
+DM100-1,"To play a numerical value in different formats, press 1","Pour lire une valeur numérique dans différents formats, appuyez sur 1"
+DM100-2,"To play a date, press 2","Pour écouter une date, appuyez sur 2"
+DM100-3,"To play a telephone number, press 3 ","Pour écouter un numéro de téléphone, appuyez sur 3"
+DM100-4,"To play an address, press 4","Pour lire une adresse, appuyez sur 4"
+DM100-0,"To speak with a customer service representative, press 0","Pour parler à un représentant du service client, appuyez sur 0"
+getinput,Enter any 5 digit number followed by the pound key.,Entrez n'importe quel nombre à 5 chiffres suivi de la touche dièse.
+ascardinal,"The value entered, played back as a number, is <break time=""0.25s""/>","Le nombre que vous avez entré comme nombre ou cardinal est <break time=""0.25s""/>"
+ascharacters,"Played as characters, would sound like <break time=""0.25s""/>","En tant que personnages <break time=""0.25s""/>"
+asslowcharacters,"We can also play the characters slower <break time=""0.25s""/>","Alors que les personnages ralentissaient <break time=""0.25s""/>"
+ascurrency,"And, finally, we could play it back as currency <break time=""0.25s""/>","Une devise est <break time=""0.25s""/>"
+dateinput,"Enter an 8 digit date, using 4 digits for the year, 2 digits for the month, and 2 digits for the day, followed by the pound key.  For example, October 21st, 1989 would be entered as, 1, 9, 8, 9, 1, 0, 2, 1, and then pound.","Entrez une date à 8 chiffres, en utilisant 4 chiffres pour l'année, 2 chiffres pour le mois et 2 chiffres pour le jour, suivis de la touche dièse. Par exemple, le 21 octobre 1989 serait saisi sous la forme 1, 9, 8, 9, 1, 0, 2, 1, puis livre."
+asdate,"The date you entered is <break time=""0.25s""/>","La date que vous avez saisie est <break time=""0.25s""/>"
+phoneinput,"Enter any 10 digit phone number, followed by the pound key.","Entrez n'importe quel numéro de téléphone à 10 chiffres, suivi de la touche dièse."
+asphone,"The phone number you entered is <break time=""0.25s""/>","Le numéro de téléphone que vous avez entré est <break time=""0.25s""/>"
+asaddress,"The address of the CN Tower is <break time=""0.25s""/>","L'adresse de la Tour CN est <break time=""0.25s""/>"
+previous,"To return to the previous menu, press 9.","Pour revenir au menu précédent, appuyez sur 9."
+agent,"To speak with a customer service representative, press 0.","Pour parler à un représentant du service client, appuyez sur 0."
+closed,"Our office is currently closed.  Normal business hours are Monday to Friday, 8:30am to 4:30pm, Eastern standard time. Please call again on our next business day. You may also find helpful information on our website, Ontario.ca.","<prosody rate=""95%"">
+Nos bureaux, sont actuellement fermés.  Les heures normales d'ouverture sont du lundi au vendredi, de 8h30 à 16h30, heure normale de l'Est. 
+<break time=""0.50s""/>Veuillez rappeler le jour ouvrable suivant. 
+<break time=""0.50s""/> Vous pouvez également trouver des informations utiles sur notre site Web, à. ontario point c a.</prosody>"
+holiday,"Today is a holiday.  Please be advised that our office is currently closed. Normal business hours are Monday to Friday, 8:30am to 4:30pm, Eastern standard time. Please call again on our next business day. You may also find helpful information on our website, Ontario.ca. ","<prosody rate=""95%""> 
+Aujourd'hui, est un jour ferié.  Veuillez noter que, nos bureaux sont actuellement fermés. 
+<break time=""0.50s""/> Les heures normales d'ouverture sont du lundi au vendredi, de 8h30 à 16h30. heure normale de l'Est. 
+Veuillez rappeler le jour ouvrable suivant. 
+<break time=""0.50s""/> Vous pouvez également trouver des informations utiles sur notre site Web,  à. ontario point c a.</prosody>"
+goodbye,Thank you for calling.  Goodbye.  ,"<prosody rate=""90%"">
+<break time=""0.25s""/> Merci d’avoir appelé. Au revoir. 
+</prosody>"
+pleasehold,Please hold while we transfer you to a representative. ,"<prosody rate=""95%"">
+Veuillez patienter, pendant que, nous vous transférons à un représentant. 
+</prosody>"
+monitor,"Please note, your call may be monitored or recorded for quality assurance and training purposes.","<prosody rate=""95%""> 
+Veuillez noter, que votre appel peut être surveillé, ou enregistré, à des fins d'assurance qualité, et de formation. </prosody>"
+noagents,"Sorry, due to unforeseen circumstances, our agents are unable to take calls at this time.  Please call us back or visit our web page.  Thank you and have a nice day.","<prosody rate=""95%"">
+Désolé. en raison de circonstances imprévues, nos agents ne sont pas en mesure de prendre des appels pour le moment. 
+<break time=""0.50s""/>Veuillez nous rappeler, ou visiter notre page web. </prosody>"
+repeat,"To repeat this message, press star.","<prosody rate=""90%"">
+Pour répéter ce message, appuyez sur, l‘étoile. 
+</prosody>"
+voicemail,If you'd like to leave a voicemail message press 1.,"<prosody rate=""90%"">
+Si vous, souhaitez laisser un message vocal, veuillez appuyer sur, le 1. <break time=""0.50s""/> Merci, et bonne journée. 
+</prosody>"
+busy,All of our representatives are currently assisting other callers.  Please hold for the next available representative.,"<prosody rate=""95%"">
+Tous nos représentants, sont en train, d’aider d’autres appelants. 
+<break time=""0.50s""/>Veuillez patienter, jusqu’au prochain représentant disponible.
+</prosody>"
+hold,Your call is important to us. All of our representatives are still assisting other callers; please hold for the next available representative.,"<prosody rate=""95%"">
+Votre appel est important, pour nous. 
+<break time=""0.50s""/> Tous nos représentants, sont en train, d’aider d’autres appelants. 
+<break time=""0.50s""/> veuillez patienter, jusqu’au prochain représentant disponible.
+</prosody>"
+difficulties,"Sorry, we’re experiencing technical difficulties and cannot take your call at this time.","Désolé, en raison de circonstances imprévues, nos agents ne sont pas en mesure de prendre des appels pour le moment.Veuillez nous rappeler ou visiter notre page web à ontario.ca/rafeo Si vous souhaitez laisser un message vocal, veuillez appuyer sur 1Merci et bonne journée.Pour répéter ce message, appuyez sur l‘étoile."
+InvalidInput1,That was an invalid entry.  Please try again,"<prosody rate=""95%"">
+<break time=""0.50s""/>Cette sélection, n’est pas valide. 
+<break time=""0.50s""/>Veuillez essayer de nouveau. 
+</prosody>"
+InvalidInput2,"Sorry, that is still an invalid choice. Please try again","<prosody rate=""95%"">
+Désolé, ce n'est pas, un choix valide. 
+<break time=""0.50s""/>S'il vous plaît, essayez de nouveau.
+</prosody>"
+NoInput1,We did not receive your entry. Please try again.,"<prosody rate=""95%"">
+Nous n’avons pas, reçu votre sélection. 
+<break time=""0.50s""/>Veuillez essayer, de nouveau.
+</prosody>"
+NoInput2,We still did not receive your entry.  Please try again.,"<prosody rate=""95%"">
+Nous n’avons, toujours pas reçu, votre sélection. 
+<break time=""0.50s""/>Veuillez essayer, de nouveau. 
+</prosody>"
+MaxInputXfer,Sorry you're still having difficulty.,"<prosody rate=""95%"">
+Désolé, que vous avez toujours des difficultés 
+</prosody>"
