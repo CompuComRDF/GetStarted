@@ -1,32 +1,51 @@
 ﻿BLOCK,TYPE,PARAM,ACTION
-START,PLAY,text:You have reached the IVR System Administration Line,SYS150
-SYS150,EXEC,session['userIDAttempts'] = 0,SYS200
-SYS200,INPUT,text:Please enter your 4 digit Application Code followed by the pound key,action:SYS300|var:appCode|length:4|seconds:10|invalid:SYS325|timeout:SYS325
-SYS300,EVAL,sysAdmin.chkAppCode(session['appCode']),true:SYS400|false:SYS325
+START,EXEC,session['userIDAttempts'] = 0,SYS200
+SYS200,INPUT,text:You have reached the IVR System Administration Line|text:Please enter your 4 digit Application Code followed by the pound key,action:SYS300|var:appCode|length:4|seconds:3|invalid:SYS325|timeout:SYS325
+SYS300,EVAL,sysAdmin.chkAppCode(session['appCode']),true:SYS380|false:SYS325
 SYS325,EXEC,session['userIDAttempts'] +=1,SYS350
 SYS350,EVAL,session['userIDAttempts'] <= 2,true:SYS375|false:SYS700
 SYS375,PLAY,text:The Application Code is not valid.  Let’s try again.,SYS200
-SYS400,MENU,"text:For Voice Mail Administration, press 1.  For Broadcast Messages, press 2. ",1:SYS600|2:SYS410
-SYS410,MENU,"text: For Broadcast Message 1, press 1.  For Broadcast Message 2, press 2.  For Broadcast Message 3, press 3.",1:SYS420|2:SYS430|3:SYS440
+SYS380,EXEC,session['verfied']=True,SYS400
+SYS400,MENU,"text:For Voice Mail Administration, press 1.  For Broadcast Messages, press 2.  For Dynamic Menus, press 3.",1:SYS600|2:SYS410|3:SYS1000|maxaction:SYS900
+SYS410,MENU,"text: Enter the Broadcast Message Number, 1, 2, or 3.",1:SYS420|2:SYS430|3:SYS440|maxaction:SYS900
 SYS420,EXEC,session['broadcastID'] = 1,SYS500
 SYS430,EXEC,session['broadcastID'] = 2,SYS500
 SYS440,EXEC,session['broadcastID'] = 3,SYS500
 SYS500,EVAL,sysAdmin.getBroadcast(session['broadcastID']),SYS510
-SYS510,PLAY,text:Broadcast Message|var:session['broadcastID']|text:is currently|var:session['evalResponse'],SYS520
-SYS520,EVAL,session['evalResponse'] == 'disabled',true:SYS530|false:SYS550
-SYS530,MENU,"text:To enable this broadcast message, press 1.  Otherwise, press 2 to cancel and return to the main menu.",1:SYS540|2:SYS400
+SYS510,EXEC,"session[""bmStatus""] = session[""evalResponse""]",SYS520
+SYS520,EVAL,session['bmStatus'] == 'disabled',true:SYS530|false:SYS550
+SYS530,MENU,"text:Broadcast Message|var:session['broadcastID']|text:is currently|var:session['bmStatus']|text:To enable this broadcast message, press 1.  Otherwise, press 2 to cancel and return to the main menu.",1:SYS540|2:SYS575|maxaction:SYS900
 SYS540,EVAL,sysAdmin.setBroadcastOn(session['broadcastID']) == 'success',true:SYS545|false:SYS800
-SYS545,PLAY,text:Broadcast Message|var:session['broadcastID']|text:is now enabled,SYS400
-SYS550,MENU,"text:To disable this broadcast message, press 1.  Otherwise, press 2 to cancel and return to the main menu.",1:SYS560|2:SYS400
+SYS545,PLAY,text:Broadcast Message|var:session['broadcastID']|text:is now enabled,SYS546
+SYS546,EXEC,util.clearPreviousMenu(),SYS410
+SYS550,MENU,"text:Broadcast Message|var:session['broadcastID']|text:is currently|var:session['bmStatus']|text:To disable this broadcast message, press 1.  Otherwise, press 2 to cancel and return to the main menu.",1:SYS560|2:SYS575|maxaction:SYS900
 SYS560,EVAL,sysAdmin.setBroadcastOff(session['broadcastID']) == 'success',true:SYS565|false:SYS800
-SYS565,PLAY,text:Broadcast Message|var:session['broadcastID']|text:is now disabled.,SYS400
+SYS565,PLAY,text:Broadcast Message|var:session['broadcastID']|text:is now disabled,SYS575
+SYS575,EXEC,util.clearPreviousMenu(),SYS410
 SYS600,EVAL,sysAdmin.chkVoiceMail(),true:SYS610|false:SYS640
-SYS610,MENU,"text:Voice Mail is currently enabled.  To disable Voice Mail, press 1.  Otherwise press 2 to cancel and return to the main menu.",1:SYS620|2:SYS400
+SYS610,MENU,"text:Voice Mail is currently enabled.  To disable Voice Mail, press 1.  Otherwise press 2 to cancel and return to the main menu.",1:SYS620|2:SYS670|maxaction:SYS900
 SYS620,EVAL,sysAdmin.setVoiceMailOff() == 'success',true:SYS630|false:SYS800
-SYS630,PLAY,text:Voice Mail is now disabled.,SYS400
-SYS640,MENU,"text:Voice Mail is currently disabled.  To enable Voice Mail, press 1.  Otherwise press 2 to cancel and return to the main menu.",1:SYS650|2:SYS400
+SYS630,PLAY,text:Voice Mail is now disabled.,SYS670
+SYS640,MENU,"text:Voice Mail is currently disabled.  To enable Voice Mail, press 1.  Otherwise press 2 to cancel and return to the main menu.",1:SYS650|2:SYS670|maxaction:SYS900
 SYS650,EVAL,sysAdmin.setVoiceMailOn() == 'success',true:SYS660|false:SYS800
-SYS660,PLAY,text:Voice Mail is now enabled.,SYS400
-SYS700,PLAY,text:You've reached the maximum number of attempts.  Good bye.,DISCONNECT
-SYS800,PLAY,text:We encountered an issue making your update.  ,SYS400
-PQ100,PLAY,text:Let's start over,RETURN
+SYS660,PLAY,text:Voice Mail is now enabled.,SYS670
+SYS670,EXEC,util.clearPreviousMenu(),SYS400
+SYS700,PLAY,text:You've reached the maximum number of attempts. ,RETURN
+SYS800,PLAY,text:We encountered an issue making your update.  ,SYS670
+SYS900,PLAY,text:Please try again later.,RETURN
+SYS1000,INPUT,text: Enter the 3 digit Dynamic Menu ID followed by pound.,action:SYS1010|var:menuID|length:3|seconds:3|invalid:SYS1025|timeout:SYS1025
+SYS1010,MENU,text:Press the menu option you would like to update,invalid:SYS1011|timeout:SYS1025|9:SYS1011
+SYS1011,EXEC,session['menuOption']=session['menuSelection'],SYS1020
+SYS1020,CASE,"sysAdmin.getDynamicMenu(session['menuID'], session['menuOption'])",invalid:SYS1025|else:SYS1030
+SYS1025,PLAY,text:The Dynamic Menu Number and option entered is invalid.,SYS1026
+SYS1026,EXEC,util.clearPreviousMenu(),SYS1000
+SYS1030,PLAY,text:Dynamic Menu|number:session['menuID']|text:Option|characters:session['menuOption']|text:is currently|var:session['evalResponse'],SYS1040
+SYS1040,EVAL,session['evalResponse'] == 'disabled',true:SYS1050|false:SYS1080
+SYS1050,MENU,"text:To enable this option, press 1.  Otherwise, press 2 to cancel and return to the main menu.",1:SYS1060|2:SYS1200|maxaction:SYS900
+SYS1060,EVAL,"sysAdmin.setDynamicMenuOn(session['menuID'], session['menuOption']) == 'success'",true:SYS1070|false:SYS800
+SYS1070,PLAY,text:Dynamic Menu|number:session['menuID']|text:Option|characters:session['menuOption']|text:is now enabled.,SYS1200
+SYS1080,MENU,"text:To disable this option, press 1.  Otherwise, press 2 to cancel and return to the main menu.",1:SYS1090|2:SYS1200|maxaction:SYS900
+SYS1090,EVAL,"sysAdmin.setDynamicMenuOff(session['menuID'], session['menuOption']) == 'success'",true:SYS1100|false:SYS800
+SYS1100,PLAY,text:Dynamic Menu|number:session['menuID']|text:Option|characters:session['menuOption']|text:is now disabled.,SYS1200
+SYS1200,EXEC,util.clearPreviousMenu(),SYS400
+PQ100,PLAY,text:Lets start over,RETURN

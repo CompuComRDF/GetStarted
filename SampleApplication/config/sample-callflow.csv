@@ -1,13 +1,13 @@
 ﻿BLOCK,TYPE,PARAM,ACTION
 IVR100,PLAY,wav:greeting,IVR125
 IVR125,MENU,wav:language,2:IVR125F|9:IVR150|*:IVR150|timeout:IVR150|invalid:IVR150
-IVR125F,LANGUGE,fr-CA,IVR150
+IVR125F,LANGUAGE,fr-CA,IVR150
 IVR150,PLAY,"eval:util.getSysAdmin(""BM01"")",IVR151
 IVR151,PLAY,"eval:util.getSysAdmin(""BM02"")",IVR152
 IVR152,PLAY,"eval:util.getSysAdmin(""BM03"")",IVR175
 IVR175,SETQUEUE,en-US:BasicQueue|fr-CA:BasicQueue,IVR200
 IVR200,MENU,tts:mainmenu|tts:agent,1:IVR300|2:IVR400|3:IVR500|0:PQ100
-IVR300,MENU,"eval:util.getDynamicPrompt(""tts"",""DM01"")","eval:util.getDynamicMenu(""DM01"")"
+IVR300,MENU,"eval:util.getDynamicPrompt(""tts"",""DM100"")","eval:util.getDynamicMenu(""DM100"")"
 IVR310,INPUT,tts:getinput,var:my_variable|length:5|action:IVR311|seconds:3
 IVR311,PLAY,"tts:ascardinal|cardinal:session[""my_variable""]",IVR312
 IVR312,PLAY,"tts:ascharacters|characters:session[""my_variable""]",IVR313
