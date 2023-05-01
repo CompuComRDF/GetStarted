@@ -1,11 +1,13 @@
 ﻿BLOCK,TYPE,PARAM,ACTION
-START,EXEC,session['userIDAttempts'] = 0,SYS200
+START,EVAL,"""verified"" in session.keys()",true:SYS050|false:SYS100
+SYS050,EVAL,session['verified'],true:SYS400|false:SYS100
+SYS100,EXEC,session['userIDAttempts'] = 0,SYS200
 SYS200,INPUT,text:You have reached the IVR System Administration Line|text:Please enter your 4 digit Application Code followed by the pound key,action:SYS300|var:appCode|length:4|seconds:3|invalid:SYS325|timeout:SYS325
 SYS300,EVAL,sysAdmin.chkAppCode(session['appCode']),true:SYS380|false:SYS325
 SYS325,EXEC,session['userIDAttempts'] +=1,SYS350
 SYS350,EVAL,session['userIDAttempts'] <= 2,true:SYS375|false:SYS700
 SYS375,PLAY,text:The Application Code is not valid.  Let’s try again.,SYS200
-SYS380,EXEC,session['verfied']=True,SYS400
+SYS380,EXEC,session['verified']=True,SYS400
 SYS400,MENU,"text:For Voice Mail Administration, press 1.  For Broadcast Messages, press 2.  For Dynamic Menus, press 3.",1:SYS600|2:SYS410|3:SYS1000|maxaction:SYS900
 SYS410,MENU,"text: Enter the Broadcast Message Number, 1, 2, or 3.",1:SYS420|2:SYS430|3:SYS440|maxaction:SYS900
 SYS420,EXEC,session['broadcastID'] = 1,SYS500
@@ -16,10 +18,10 @@ SYS510,EXEC,"session[""bmStatus""] = session[""evalResponse""]",SYS520
 SYS520,EVAL,session['bmStatus'] == 'disabled',true:SYS530|false:SYS550
 SYS530,MENU,"text:Broadcast Message|var:session['broadcastID']|text:is currently|var:session['bmStatus']|text:To enable this broadcast message, press 1.  Otherwise, press 9 to cancel and return to the previous menu.",1:SYS540|9:SYS410|maxaction:SYS410
 SYS540,EVAL,sysAdmin.setBroadcastOn(session['broadcastID']) == 'success',true:SYS545|false:SYS800
-SYS545,MENU,"text:Broadcast Message|var:session['broadcastID']|text:is now enabled|text:To repeat this message, press star.",9:SYS400|maxaction:SYS400
-SYS550,MENU,"text:Broadcast Message|var:session['broadcastID']|text:is currently|var:session['bmStatus']|text:To disable this broadcast message, press 1.  Otherwise, press 2 to cancel and return to the main menu.",1:SYS560|9:SYS410|maxaction:SYS410
+SYS545,MENU,"text:Broadcast Message|var:session['broadcastID']|text:is now enabled|text:To repeat this message, press star.",9:SYS410|maxaction:SYS410
+SYS550,MENU,"text:Broadcast Message|var:session['broadcastID']|text:is currently|var:session['bmStatus']|text:To disable this broadcast message, press 1.  Otherwise, press 9 to cancel and return to the previous menu.",1:SYS560|9:SYS410|maxaction:SYS410
 SYS560,EVAL,sysAdmin.setBroadcastOff(session['broadcastID']) == 'success',true:SYS565|false:SYS800
-SYS565,MENU,"text:Broadcast Message|var:session['broadcastID']|text:is now disabled|text:To repeat this message, press star.",9:SYS400|maxaction:SYS400
+SYS565,MENU,"text:Broadcast Message|var:session['broadcastID']|text:is now disabled|text:To repeat this message, press star.",9:SYS410|maxaction:SYS410
 SYS600,EVAL,sysAdmin.chkVoiceMail(),true:SYS610|false:SYS640
 SYS610,MENU,"text:Voice Mail is currently enabled.  To disable Voice Mail, press 1.  Otherwise press 9 to cancel and return to the previous menu.",1:SYS620|9:SYS400|maxaction:SYS400
 SYS620,EVAL,sysAdmin.setVoiceMailOff() == 'success',true:SYS630|false:SYS800
