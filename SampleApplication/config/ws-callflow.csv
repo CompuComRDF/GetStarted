@@ -16,5 +16,11 @@ WS700,SOAP,"wsdl:http://webservices.oorsprong.org/websamples.countryinfo/Country
 WS750,PLAY,"text:The capital city of Canada is|var:session[""soapResponse""]",WS800
 WS775,PLAY,The capital city service failed,WS800
 WS800,SOAP,"wsdl:http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso?WSDL|operation:FullCountryInfo(""US"")",true:WS850|false:WS875
-WS850,PLAY,"text:The capital city of|var:session[""soapResponse""][""sName""]|text:is|var:session['soapResponse']['sCapitalCity']",RETURN
-WS875,PLAY,The full country info service failed,RETURN
+WS850,PLAY,"text:The capital city of|var:session[""soapResponse""][""sName""]|text:is|var:session['soapResponse']['sCapitalCity']",WS900
+WS875,PLAY,The full country info service failed,WS900
+WS900,REST,api:https://api.chucknorris.io/jokes/random|operation:get,true:WS950|false:WS975
+WS950,PLAY,"text:Here’s a rest API with random Chuck Norris jokes.|var:session[""restResponse""][""value""]",WS1000
+WS975,PLAY,"Sorry, this rest API failed",WS1000
+WS1000,REST,api:https://catfact.ninja/fact|operation:get,true:WS1050|false:WS1075
+WS1050,PLAY,"text:Here's a random cat fact |var:session[""restResponse""][""fact""]",RETURN
+WS1075,PLAY,"Sorry, this rest API failed",RETURN
