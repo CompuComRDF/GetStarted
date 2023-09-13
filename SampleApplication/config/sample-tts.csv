@@ -23,10 +23,10 @@ asphone,"The phone number you entered is <break time=""0.25s""/>","Le numéro de
 asaddress,"The address of the CN Tower is <break time=""0.25s""/>","L'adresse de la Tour CN est <break time=""0.25s""/>"
 previous,"To return to the previous menu, press 9.","Pour revenir au menu précédent, appuyez sur 9."
 agent,"To speak with a customer service representative, press 0.","Pour parler à un représentant du service client, appuyez sur 0."
-closed,"Our office is currently closed.  Normal business hours are Monday to Friday, 8:30am to 4:30pm, Eastern standard time. Please call again on our next business day. You may also find helpful information on our website, Ontario.ca.","<prosody rate=""95%"">
+closed,"Our office is currently closed.  Normal business hours are Monday to Friday, 8:30am to 4:30pm, Eastern standard time. Please call again on our next business day. You may also find helpful information on our website.","<prosody rate=""95%"">
 Nos bureaux, sont actuellement fermés.  Les heures normales d'ouverture sont du lundi au vendredi, de 8h30 à 16h30, heure normale de l'Est. 
 <break time=""0.50s""/>Veuillez rappeler le jour ouvrable suivant. 
-<break time=""0.50s""/> Vous pouvez également trouver des informations utiles sur notre site Web, à. ontario point c a.</prosody>"
+<break time=""0.50s""/> Vous pouvez également trouver des informations utiles sur notre site Web</prosody>"
 holiday,"Today is a holiday.  Please be advised that our office is currently closed. Normal business hours are Monday to Friday, 8:30am to 4:30pm, Eastern standard time. Please call again on our next business day. You may also find helpful information on our website, Ontario.ca. ","<prosody rate=""95%""> 
 Aujourd'hui, est un jour ferié.  Veuillez noter que, nos bureaux sont actuellement fermés. 
 <break time=""0.50s""/> Les heures normales d'ouverture sont du lundi au vendredi, de 8h30 à 16h30. heure normale de l'Est. 
@@ -40,7 +40,7 @@ Veuillez patienter, pendant que, nous vous transférons à un représentant.
 </prosody>"
 monitor,"Please note, your call may be monitored or recorded for quality assurance and training purposes.","<prosody rate=""95%""> 
 Veuillez noter, que votre appel peut être surveillé, ou enregistré, à des fins d'assurance qualité, et de formation. </prosody>"
-noagents,"Sorry, due to unforeseen circumstances, our agents are unable to take calls at this time.  Please call us back or visit our web page.  Thank you and have a nice day.","<prosody rate=""95%"">
+noagents,"Sorry, due to unforeseen circumstances, our agents are unable to take calls at this time.  Please call us back or visit our web page. ","<prosody rate=""95%"">
 Désolé. en raison de circonstances imprévues, nos agents ne sont pas en mesure de prendre des appels pour le moment. 
 <break time=""0.50s""/>Veuillez nous rappeler, ou visiter notre page web. </prosody>"
 repeat,"To repeat this message, press star.","<prosody rate=""90%"">

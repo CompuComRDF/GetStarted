@@ -7,6 +7,7 @@ sysAdminFile,sample-sysadmin.csv
 connectFlowType,INBOUND
 defaultDNIS,IVR100
 defaultQueue,BasicQueue
+defaultVM,Q2000
 language,en-US
 globalMenuAttempts,2
 globalInvalidPrompt,tts:InvalidInput1|tts:InvalidInput2

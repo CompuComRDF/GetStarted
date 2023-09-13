@@ -27,23 +27,26 @@ PQ110,EVAL,session['function']=='agent',true:PQ125|false:PQ175
 PQ125,EVAL,session['queuemetrics']['agentsOnline'] > 0,true:PQ150|false:PQ175
 PQ150,PLAY,text:The queue is open and staffed.  Please transfer the caller now.,PQ175
 PQ175,EVAL,queues.checkHoliday(),true:PQ200|false:PQ300
-PQ200,MENU,tts:holiday|tts:repeat,timeout:Q1000|invalid:Q1000|maxaction:Q1000
+PQ200,MENU,tts:holiday|tts:voicemail|tts:repeat,1:Q1100|timeout:Q1000|invalid:Q1000|maxaction:Q1000
 PQ300,EVAL,queues.checkBusinessHours(),true:PQ500|false:PQ400
-PQ400,MENU,tts:closed|tts:repeat,timeout:Q1000|invalid:Q1000|maxaction:Q1000
+PQ400,MENU,tts:closed|tts:voicemail|tts:repeat,1:Q1100|timeout:Q1000|invalid:Q1000|maxaction:Q1000
 PQ500,EVAL,session['queuemetrics']['contactsInQueue'] < 30,true:PQ700|false:PQ600
-PQ600,MENU,tts:noagents|tts:repeat,timeout:Q1000|invalid:Q1000|maxaction:Q1000
+PQ600,MENU,tts:noagents|tts:voicemail|tts:repeat,1:Q1100|timeout:Q1000|invalid:Q1000|maxaction:Q1000
 PQ700,EVAL,session['queuemetrics']['agentsOnline'] > 0,true:PQ800|false:PQ600
 PQ800,PLAY,tts:pleasehold|tts:monitor,PQ900
 PQ900,QUEUE,,Q100
 Q100,PLAY,wav:Music_Jazz_MyTimetoFly_Inst_60s,Q150
-Q150,PLAY,tts:busy,Q175
+Q150,MENU,tts:busy|tts:voicemail,1:Q1100|timeout:Q175|invalid:Q175|maxaction:Q175
 Q175,PLAY,wav:Music_Jazz_MyTimetoFly_Inst_150s,Q200
 Q200,EVAL,queues.withinWaitCapacity(300),true:Q300|false:Q400
-Q300,PLAY,tts:busy,Q500
-Q400,PLAY,tts:highvolume,Q500
+Q300,MENU,tts:busy|tts:voicemail,1:Q1100|timeout:Q500|invalid:Q500|maxaction:Q500
+Q400,MENU,tts:highvolume|tts:voicemail,1:Q1100|timeout:Q500|invalid:Q500|maxaction:Q500
 Q500,PLAY,wav:Music_Jazz_MyTimetoFly_Inst_150s,Q600
 Q600,EVAL,queues.agentsOnline(),true:Q700|false:Q900
 Q700,EVAL,queues.checkBusinessHours(),true:Q300|false:Q800
-Q800,MENU,tts:closed|tts:repeat,timeout:Q1000|invalid:Q1000|maxaction:Q1000
-Q900,MENU,tts:noagents|tts:repeat,timeout:Q1000|invalid:Q1000|maxaction:Q1000
+Q800,MENU,tts:closed|tts:voicemail|tts:repeat,1:Q1100|timeout:Q1000|invalid:Q1000|maxaction:Q1000
+Q900,MENU,tts:noagents|tts:voicemail|tts:repeat,1:Q1100|timeout:Q1000|invalid:Q1000|maxaction:Q1000
 Q1000,PLAY,tts:goodbye,DISCONNECT
+Q1100,SUB,voicemail,DISCONNECT
+Q2000,SETQUEUE,en-US:VoiceMail|fr-CA:VoiceMail,Q2100
+Q2100,QUEUE,,Q100
